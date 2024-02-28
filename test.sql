@@ -4,7 +4,10 @@ SET SERVEROUTPUT ON;
 --    employee_name VARCHAR2(20),
 --    employee_slary NUMBER(10)
 --);
---INSERT INTO employees values (3,'ducdz',3000)
+--INSERT INTO employees(employee_id,employee_name,employee_slary) values (5,'ducdz',3000)
+--DELETE FROM employees WHERE employee_id =5;
+--ALTER TABLE employees
+--ADD employee_date date;
 --select * from employees
 -------------------------------------
 --DECLARE 
@@ -52,7 +55,7 @@ SET SERVEROUTPUT ON;
 --    v_i NUMBER:= 0; 
 --    v_rs number;
 --begin
---   while v_i>=5 loop            
+--   while v_i<=5 loop            
 --        v_i:=v_i+1;
 --        v_rs:= 19*v_i;
 --        dbms_output.put_line('i: '||v_i||'rs: '|| v_rs);
@@ -70,10 +73,29 @@ SET SERVEROUTPUT ON;
 --end;
 --------------------------------------
 --create or replace trigger i_employee
---before insert on employees
+--before insert or delete or update on employees
 --for each row
 --enable
 --begin 
+--if inserting then 
 --    dbms_output.put_line('insert new item');
+--elsif deleting then 
+--    dbms_output.put_line('delete new item');
+--elsif updating then 
+--    dbms_output.put_line('update new item');
+--end if;
+--    
 --end;
 --------------------------------------
+--create or replace trigger i_employee
+--before insert on employees
+--for each row
+--enable
+--declare
+--    v_date employees.employee_date%type;
+--begin 
+--SELECT CURRENT_DATE into v_date
+--FROM DUAL;
+--    insert into employees(employee_id,employee_name,employee_slary,employee_date) values (:NEW.employee_id,:NEW.employee_name,:NEW.employee_slary,v_date); 
+--    
+--end;
