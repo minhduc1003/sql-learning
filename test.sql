@@ -140,11 +140,40 @@ SET SERVEROUTPUT ON;
 --    end loop;
 --end;
 --------------------------------------
-declare 
-cursor getname (cus_id student.id%type) is 
-select name,id from student where id = cus_id; 
-begin
-    for s in getname(1) loop
-    DBMS_OUTPUT.PUT_LINE(s.name||' '||s.id);
-    end loop;
-end;
+--declare 
+--cursor getname (cus_id student.id%type) is 
+--select name,id from student where id = cus_id; 
+--begin
+--    for s in getname(1) loop
+--    DBMS_OUTPUT.PUT_LINE(s.name||' '||s.id);
+--    end loop;
+--end;
+--------------------------------------
+--declare 
+--    v_employee employees%rowtype;
+--begin 
+--    select * into v_employee from employees where employee_id =1;
+--    dbms_output.put_line(v_employee.employee_name);
+--end;
+--------------------------------------
+--declare 
+--   v_num number(8,5) := 1234;
+--begin   
+--    dbms_output.put_line(v_num);
+--end;
+--------------------------------------
+--create or replace function timeTriagle (num number)  
+--return number is
+--pi constant number := 3.14;
+--rs number;
+--begin
+--rs:= pi*num*num;
+--dbms_output.put_line(rs);
+--end;
+--------------------------------------
+--declare 
+-- rs number;
+--begin 
+--rs:= timeTriagle(2);
+--dbms_output.put_line(rs);
+--end;
