@@ -92,10 +92,59 @@ SET SERVEROUTPUT ON;
 --for each row
 --enable
 --declare
---    v_date employees.employee_date%type;
+--    v_date date;
 --begin 
---SELECT CURRENT_DATE into v_date
---FROM DUAL;
---    insert into employees(employee_id,employee_name,employee_slary,employee_date) values (:NEW.employee_id,:NEW.employee_name,:NEW.employee_slary,v_date); 
---    
+--SELECT CURRENT_DATE into v_date FROM DUAL;
+--    :New.employee_date := v_date;
 --end;
+--INSERT INTO employees(employee_id,employee_name,employee_slary) values (7,'ducdz',3000);
+--drop TRIGGER i_employee
+--select * from employees
+--------------------------------------
+--DECLARE 
+--   v_date date;
+--  
+--BEGIN
+--select CURRENT_DATE into v_date from dual;
+----    v_date:= sysdate;
+--     DBMS_OUTPUT.PUT_LINE(v_date);
+--END;
+--select user from dual;
+--------------------------------------
+--create table student(
+--    id number,
+--    name varchar2(10)
+--);
+--insert into student values (1,'duc');
+--create view  v_employee as select name,employee_name from student, employees;
+--create or replace trigger in_view_ems
+--instead of insert on v_employee
+--for each row
+--enable
+--begin
+--insert into student(name) values (:new.name);
+--insert into employees(employee_name) values(:new.employee_name);
+--end;
+--insert into v_employee values ('duc','dat');
+--SELECT * from employees
+--SELECT * from v_employee
+--select * from student
+--------------------------------------
+--declare 
+-- i number;
+-- v_name student.name%type;
+--begin
+--    for i in 1..1 loop
+--    SELECT name into v_name from student where student.id =i;
+--    DBMS_OUTPUT.PUT_LINE(v_name);
+--    end loop;
+--end;
+--------------------------------------
+declare 
+cursor getname (cus_id student.id%type) is 
+select name,id from student where id = cus_id; 
+begin
+    for s in getname(1) loop
+    DBMS_OUTPUT.PUT_LINE(s.name||' '||s.id);
+    end loop;
+end;
